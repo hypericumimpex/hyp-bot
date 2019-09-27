@@ -219,7 +219,7 @@
     display: none;
     font-family: "quicksandregular", "Helvetica Neue", Helvetica, Aria;
     height: auto;
-    width: 370px;
+    width: 310px;
     position: relative;
     box-sizing: border-box; /*margin-bottom: 10px;*/
 }
@@ -246,7 +246,7 @@
 .woo-chatbot-content {
     height: 400px;
     position: relative;
-    padding: 15px;
+    margin: 15px;
     box-sizing: border-box;
 }
 
@@ -271,19 +271,24 @@
     margin: -10px -45px;
 }
 
+.woo-chatbot-messages-wrapper {
+    height: 100%;
+}
+
 ul.woo-chatbot-messages-container {
     padding: 0 !important;
     margin: 0 !important;
     overflow: hidden;
+    min-height: 100%;
 }
 
 @keyframes messageAnim {
     0% {
-        transform: translateY(80px) scaleX(0.5);
+        transform: translateY(300px);
         opacity: 0;
     }
     100% {
-        transform: translateY(0) scaleX(1);
+        transform: translateY(0);
         opacity: 1;
     }
 }
@@ -298,7 +303,7 @@ ul.woo-chatbot-messages-container > li {
     line-height: 150%;
     min-height: 50px;
     margin: 0 0 10px 0;
-    animation: messageAnim 0.5s;
+    animation: messageAnim 1.5s;
     opacity: 1;
 }
 
@@ -377,7 +382,7 @@ ul.woo-chatbot-messages-container > li .woo-chatbot-agent, .woo-chatbot-agent-pr
 4.  Tab
 *********************************************************************************/
 .woo-chatbot-footer {
-    border-radius: 5px;
+    /*border-radius: 5px;*/
 }
 
 .woo-chatbot-tab-nav {
@@ -438,7 +443,7 @@ ul.woo-chatbot-messages-container > li .woo-chatbot-agent, .woo-chatbot-agent-pr
 }
 
 .woo-chatbot-tab-nav ul li a[data-option="support"] {
-    background-position: -169px -7px;
+    background-position: -128px -127px;
 }
 
 .woo-chatbot-tab-nav ul li:before {
@@ -530,7 +535,9 @@ ul.woo-chatbot-messages-container > li .woo-chatbot-agent, .woo-chatbot-agent-pr
 .woo-chatbot-editor-container button {
     display: inline-block;
     height: 40px;
-    background: transparent url("../images/send-button.png") no-repeat center;
+    background-image: url("../images/send-button.png");
+    background-position: center;
+    background-repeat: no-repeat;
     color: transparent;
     width: 20%;
     cursor: pointer;
@@ -573,19 +580,19 @@ ul.woo-chatbot-messages-container > li .woo-chatbot-agent, .woo-chatbot-agent-pr
 }
 
 /************Link Item*************/
-span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard,span.woo-chatbot-card-button, span.qcld-chatbot-suggest-email, span.qcld-chatbot-suggest-phone {
+span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard, span.woo-chatbot-card-button, span.qcld-chatbot-suggest-email, span.qcld-chatbot-suggest-phone {
     display: block;
     margin: 8px auto;
     padding: 12px 30px;
 }
 
-.qcld-chatbot-reset-btn {
+.qcld-chatbot-reset-btn, .qcld-chatbot-bargin-confirm-btn {
     display: inline-block;
     padding: 5px 12px;
     min-width: 100px;
 }
 
-span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard,span.woo-chatbot-card-button, span.qcld-chatbot-suggest-email,span.qcld-chatbot-suggest-phone, span.qcld-chatbot-reset-btn, #woo-chatbot-loadmore {
+span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard, span.woo-chatbot-card-button, span.qcld-chatbot-suggest-email, span.qcld-chatbot-suggest-phone, span.qcld-chatbot-reset-btn, span.qcld-chatbot-bargin-confirm-btn, #woo-chatbot-loadmore {
     font-weight: bold;
     cursor: pointer;
     text-align: center;
@@ -631,7 +638,7 @@ span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-c
     background: rgba(0, 0, 0, 0.51);
     bottom: 0;
     left: 0;
-    position: absolute;
+    position: absolute !important;
     right: 0;
     text-align: center;
     top: 0;
@@ -811,14 +818,15 @@ span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-c
     position: relative;
     margin: 50px auto;
     font-size: 0;
-    min-height: 300px;
+    height: 494px;
     padding: 15px;
+	overflow-y: auto;
 }
 
 .woo-chatbot-product-image-col, .woo-chatbot-product-info-col {
     display: inline-block;
     vertical-align: top;
-    width: 50%;
+    width: 49%;
     font-size: 15px;
     box-sizing: border-box;
     padding: 15px;
@@ -905,10 +913,12 @@ span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-c
     margin: 10px 0;
     font-size: 0;
 }
-.woo-chatbot-product-variable{
+
+.woo-chatbot-product-variable {
     max-height: 125px;
     overflow-x: auto;
 }
+
 .woo-chatbot-product-details ::-webkit-scrollbar {
     width: 5px;
     background: transparent;
@@ -918,6 +928,7 @@ span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-c
 .woo-chatbot-product-details ::-webkit-scrollbar-thumb {
     background: #1f8ceb;
 }
+
 .woo-chatbot-product-quantity label, .woo-chatbot-product-variable label {
     display: inline-block;
     width: 90px;
@@ -1169,7 +1180,7 @@ a.woo-chatbot-product-close {
 }
 
 /************Link Item*************/
-.woo-chatbot-shortcode-template-container span.qcld-chatbot-product-category, .woo-chatbot-shortcode-template-container span.qcld-chatbot-support-items, .woo-chatbot-shortcode-template-container span.qcld-chatbot-wildcard,.woo-chatbot-shortcode-template-container span.woo-chatbot-card-button, .woo-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email,span.qcld-chatbot-suggest-phone, .woo-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn, .woo-chatbot-shortcode-template-container #woo-chatbot-loadmore {
+.woo-chatbot-shortcode-template-container span.qcld-chatbot-product-category, .woo-chatbot-shortcode-template-container span.qcld-chatbot-support-items, .woo-chatbot-shortcode-template-container span.qcld-chatbot-wildcard, .woo-chatbot-shortcode-template-container span.woo-chatbot-card-button, .woo-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email, span.qcld-chatbot-suggest-phone, .woo-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn, .woo-chatbot-shortcode-template-container #woo-chatbot-loadmore {
     color: #000000;
     background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
     background-size: 200% auto;
@@ -1177,7 +1188,7 @@ a.woo-chatbot-product-close {
     border: 1px solid #ffffff;
 }
 
-.woo-chatbot-shortcode-template-container span.qcld-chatbot-product-category:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-support-items:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-wildcard:hover,.woo-chatbot-shortcode-template-container span.woo-chatbot-card-button:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email:hover,span.qcld-chatbot-suggest-phone:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn:hover, .woo-chatbot-shortcode-template-container #woo-chatbot-loadmore:hover {
+.woo-chatbot-shortcode-template-container span.qcld-chatbot-product-category:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-support-items:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-wildcard:hover, .woo-chatbot-shortcode-template-container span.woo-chatbot-card-button:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email:hover, span.qcld-chatbot-suggest-phone:hover, .woo-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn:hover, .woo-chatbot-shortcode-template-container #woo-chatbot-loadmore:hover {
     background-position: right center;
     box-shadow: none;
 }
@@ -1394,6 +1405,11 @@ a.woo-chatbot-product-close {
     opacity: 0.01;
 }
 
+#woo-chatbot-chat-container *{
+	scroll-behavior:smooth;
+}
+
+
 /****************************************************************************************************
 11 Responsive
 ****************************************************************************************************/
@@ -1451,7 +1467,7 @@ a.woo-chatbot-product-close {
     #woo-chatbot-mobile-close {
         position: absolute;
         right: 12px;
-        top: 9px;
+        top: 38px;
         display: table;
         background: rgba(252, 67, 3, 0.8) url("../images/woo-boat-product-close-icon.png") no-repeat center;
         width: 30px;
@@ -1504,4 +1520,233 @@ a.woo-chatbot-product-close {
         width: 250px;
         padding-top: 55px;
     }
+}
+@keyframes chatOpenAnim{
+		to{
+			opacity: 1;
+		
+		}
+		from{
+			opacity:0;
+		
+		}
+}
+@keyframes chatOpenAnim2{
+		to{
+			opacity: 1;
+		
+		}
+		from{
+			opacity:0;
+			
+		}
+}
+.woobot_chatopen_iconanimation img{
+	animation: chatOpenAnim 1.5s;
+}
+.woobot_chatclose_iconanimation img{
+	animation: chatOpenAnim2 1.5s;	
+}
+.span.woo-chatbot-card-button{padding: 0;}
+
+/*======*/
+/************Link Item*************/
+span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard, span.qcld-chatbot-suggest-email, span.qcld-chatbot-suggest-phone, span.qcld-chatbot-site-search, span.qcld-chatbot-default, span.qcld-chatbot-custom-intent {
+    /*
+	display: block;
+    margin: 8px auto;
+    padding: 12px 30px;
+	*/
+	display: inline-block;
+    margin: 3px auto;
+    padding: 6px 11px;
+    margin-right: 4px;
+}
+.qcld_back_to_start{
+    display: block !important;
+    margin: 8px auto !important;
+    padding: 12px 30px !important;
+}
+.qcld-chatbot-reset-btn, .qcld-chatbot-bargin-confirm-btn, .qcld-chat-common {
+    display: inline-block;
+    padding: 5px 12px;
+    min-width: 100px;
+}
+span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard, span.qcld-chatbot-suggest-email,span.qcld-chatbot-suggest-phone, span.qcld-chatbot-reset-btn, span.qcld-chatbot-bargin-confirm-btn,span.qcld-chat-common,span.qcld-chatbot-site-search,span.qcld-chatbot-default, span.qcld-chatbot-custom-intent , #wp-chatbot-loadmore, .wp-chatbot-loadmore {
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 50px;
+    transition: 0.2s linear;
+}
+.wp-chatbot-shortcode-template-container span.qcld-chatbot-product-category, .wp-chatbot-shortcode-template-container span.qcld-chatbot-support-items, .wp-chatbot-shortcode-template-container span.qcld-chatbot-wildcard, .wp-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email,span.qcld-chatbot-suggest-phone, span.qcld-chatbot-site-search,span.qcld-chatbot-default, span.qcld-chatbot-custom-intent, .wp-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn, .wp-chatbot-shortcode-template-container span.qcld-chatbot-bargin-confirm-btn, .wp-chatbot-shortcode-template-container span.qcld-chat-common, .wp-chatbot-shortcode-template-container #wp-chatbot-loadmore, .wp-chatbot-loadmore {
+    color: #000000;
+    background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+    background-size: 200% auto;
+    box-shadow: 0 5px 5px #c3c3c3;
+    border: 1px solid #ffffff;
+}
+
+.wp-chatbot-shortcode-template-container span.qcld-chatbot-product-category:hover, .wp-chatbot-shortcode-template-container span.qcld-chatbot-support-items:hover, .wp-chatbot-shortcode-template-container span.qcld-chatbot-wildcard:hover, .wp-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email:hover,span.qcld-chatbot-suggest-phone:hover,span.qcld-chatbot-site-search:hover,span.qcld-chatbot-default:hover, span.qcld-chatbot-custom-intent:hover , .wp-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn:hover, .wp-chatbot-shortcode-template-container span.qcld-chatbot-bargin-confirm-btn:hover, .wp-chatbot-shortcode-template-container span.qcld-chat-common:hover, .wp-chatbot-shortcode-template-container #wp-chatbot-loadmore:hover, .wp-chatbot-loadmore:hover {
+    background-position: right center;
+    box-shadow: none;
+}
+span.qcld-chat-common{
+
+    color: #000000;
+
+    background-image: linear-gradient(to right, #868afa 0%, #8fd3f4 51%, #2faafa 100%);
+
+    background-size: 200% auto;
+
+    box-shadow: 0 5px 15px #c3c3c3;
+
+    border: 1px solid #ffffff;
+
+}
+
+span.qcld-chat-common:hover {
+
+    background-position: right center;
+
+    box-shadow: none;
+
+}
+
+.wpbot_card_wraper{margin-bottom: 10px;}
+.wpbot_card_wraper a{display: block;
+    padding: 3px 0px;}
+.wpbot_card_image{position:relative;overflow: hidden;
+    width: 100%;
+    height: 150px;}
+.wpbot_card_image img{position: absolute;
+    display: block;
+    width: 100%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;}
+.wpbot_card_caption{position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #232020bd;
+    padding: 5px;left: 0;}
+.wpbot_card_caption h2{font-size: 15px;
+    color: #fff;
+    margin-bottom: 5px;
+    padding: 0px; letter-spacing: 0px;
+    line-height: normal;text-align: center;}
+.wpbot_card_caption p{font-size: 12px;
+    margin-bottom: 0px;
+    padding: 0px;color:#fff;}
+.wpb-search-result>p {
+    background-color: #eaf1f6;
+    padding: 8px 15px;
+    max-width: 90%;
+    box-shadow: 0 2px 8px #bfbfbf;
+    border-radius: 0 10px 10px 10px;
+	margin-bottom: 15px;
+}
+.wp-chatbot-loadmore{padding:10px}
+#woo-chatbot-chat-container a {
+   display: block;
+}
+.wpbot_card_image_saas{height:auto !important;}
+.wpbot_card_caption_saas {
+    position: unset !important;
+}
+.wpbot_card_caption_saas h2{
+    line-height: inherit !important;
+}
+
+
+.wpbot_card_image_saas a {
+    display: block;
+     background: unset !important;
+    padding: unset !important;
+    line-height: auto !important;
+    padding-left: unset !important;
+    margin-bottom: 5px;
+}
+.wpbot_card_image_saas a:before{
+    content: unset !important;
+}
+
+
+
+/******* bargain module Featured products *******/
+
+.woo-chatbot-products-bargain {
+    clear: both;
+    height: auto;
+    margin-bottom: 0px;
+}
+
+.woo-chatbot-products-bargain ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0;
+}
+
+.woo-chatbot-products-bargain ul li {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.51);
+}
+
+.woo-chatbot-products-bargain ul li:nth-child(2n+2) {
+    margin-left: 4%;
+}
+
+.woo-chatbot-products-bargain ul li img {
+    display: block;
+    max-width: 35% !important;
+    height: auto;
+    box-shadow: none !important;
+    float: left;
+}
+
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain {
+    width: 65%;
+    float: left;
+    padding: 2%;
+
+}
+
+.woo-chatbot-products-bargain ul li:hover .woo-chatbot-product-bargain {
+    visibility: visible;
+}
+
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain .woo-chatbot-product-table {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain .woo-chatbot-product-table .woo-chatbot-product-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain h3.woo-chatbot-product-title {
+    padding: 0;
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain h3.woo-chatbot-product-title {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain .price, .woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain .price span, 
+.woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain .price ins, .woo-chatbot-products-bargain ul li .woo-chatbot-product-bargain .price del {
+    background-color: transparent !important;
+    color: #ffffff;
+    font-size: 14px;
 }

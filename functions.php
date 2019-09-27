@@ -34,6 +34,19 @@ function woo_chatbot_load_footer_html()
                 background-color: <?php echo get_option('woo_chatbot_bot_msg_bg_color')?> !important;
                 word-break: break-word;
             }
+			
+			
+			
+			
+			
+			
+			span.qcld-chatbot-product-category, span.qcld-chatbot-support-items, span.qcld-chatbot-wildcard, span.qcld-chatbot-suggest-email, span.qcld-chatbot-reset-btn, #woo-chatbot-loadmore, .woo-chatbot-shortcode-template-container span.qcld-chatbot-product-category, .woo-chatbot-shortcode-template-container span.qcld-chatbot-support-items, .woo-chatbot-shortcode-template-container span.qcld-chatbot-wildcard, .woo-chatbot-shortcode-template-container span.woo-chatbot-card-button, .woo-chatbot-shortcode-template-container span.qcld-chatbot-suggest-email, span.qcld-chatbot-suggest-phone, .woo-chatbot-shortcode-template-container span.qcld-chatbot-reset-btn, .woo-chatbot-shortcode-template-container #woo-chatbot-loadmore, .woo-chatbot-ball-cart-items {
+                color: <?php echo get_option('woo_chatbot_buttons_text_color')?> !important;
+                background-color: <?php echo get_option('woo_chatbot_buttons_bg_color')?> !important;
+               background-image: none !important;
+            }
+			
+			
 
             li.woo-chat-user-msg .woo-chatbot-paragraph {
                 color: <?php echo get_option('woo_chatbot_user_msg_text_color')?> !important;
@@ -60,12 +73,56 @@ function woo_chatbot_load_footer_html()
                 color: <?php echo get_option('woo_chatbot_proactive_text_color')?> !important;
                 background-color: <?php echo get_option('woo_chatbot_proactive_bg_color')?> !important;
             }
+			
             <?php
 
             if(get_option('woo_chatbot_custom_css')!="") {
             echo get_option('woo_chatbot_custom_css');
             }
             ?>
+			
+			
+			 <?php if (get_option('qcld_woo_chatbot_custom_icons') == 1) { ?>
+			 		<?php if (get_option('qcld_woo_chatbot_custom_icon_help') !="") { ?>
+					.woo-chatbot-tab-nav ul li a[data-option="help"] {
+						background: url(<?php echo get_option('qcld_woo_chatbot_custom_icon_help'); ?>) no-repeat;
+						background-position:center center !important;
+						background-size:contain;
+					}
+					 <?php } ?>
+					<?php if (get_option('qcld_woo_chatbot_custom_icon_support') !="") { ?>
+					.woo-chatbot-tab-nav ul li a[data-option="support"] {
+						background: url(<?php echo get_option('qcld_woo_chatbot_custom_icon_support'); ?>) no-repeat;
+						background-position:center center !important;
+						background-size:contain;
+					}
+					 <?php } ?>
+					
+					<?php if (get_option('qcld_woo_chatbot_custom_icon_recent') !="") { ?>
+					.woo-chatbot-tab-nav ul li a[data-option="recent"] {
+						background: url(<?php echo get_option('qcld_woo_chatbot_custom_icon_recent'); ?>) no-repeat;
+						background-position:center center !important;
+						background-size:contain;
+					}
+					 <?php } ?>
+					
+					<?php if (get_option('qcld_woo_chatbot_custom_icon_cart') !="") { ?>
+					.woo-chatbot-tab-nav ul li a[data-option="cart"] {
+						background: url(<?php echo get_option('qcld_woo_chatbot_custom_icon_cart'); ?>) no-repeat;
+						background-position:center center !important;
+						background-size:contain;
+					}
+					 <?php } ?>
+					
+					<?php if (get_option('qcld_woo_chatbot_custom_icon_chat') !="") { ?>
+					.woo-chatbot-tab-nav ul li a[data-option="chat"] {
+						background: url(<?php echo get_option('qcld_woo_chatbot_custom_icon_chat'); ?>) no-repeat;
+						background-position:center center !important;
+						background-size:contain;
+					}
+					 <?php } ?>
+					
+			 <?php } ?>
 
         </style>
         <?php if (get_option('qcld_woo_chatbot_change_bg') == 1) {
@@ -79,6 +136,9 @@ function woo_chatbot_load_footer_html()
                 .woo-chatbot-container {
                     background-image: url(<?php echo $qcld_woo_chatbot_board_bg_path;?>) !important;
                 }
+				.woo-chatbot-board-container, .woo-chatbot-template-01 .woo-chatbot-content{
+					background:none !important;
+				}
             </style>
         <?php }
         $woo_chatbot_enable_rtl = "";
@@ -91,15 +151,15 @@ function woo_chatbot_load_footer_html()
         }
         ?>
         <div id="woo-chatbot-chat-container"
-             class="<?php echo $woo_chatbot_enable_rtl . ' ' . $woo_chatbot_enable_mobile_screen; ?>">
-            <div id="woo-chatbot-integration-container">
+             class="<?php echo 'woo-chatcontainer_'.get_option('qcld_woo_chatbot_theme').' '.$woo_chatbot_enable_rtl . ' ' . $woo_chatbot_enable_mobile_screen; ?>">
+            <div id="woo-chatbot-integration-container" style="display:none;">
                 <div class="woo-chatbot-integration-button-container">
                     <?php if (get_option('enable_woo_chatbot_skype_floating_icon') == 1) { ?>
                         <a href="skype:<?php echo get_option('enable_woo_chatbot_skype_id'); ?>?chat"><span
                                     class="inetegration-skype-btn" title="<?php _e('Skype', 'woochatbot'); ?>"> </span></a>
                     <?php } ?>
                     <?php if (get_option('enable_woo_chatbot_floating_whats') == 1) { ?>
-                        <a href="<?php echo 'https://api.whatsapp.com/send?phone=' . get_option('qlcd_woo_chatbot_whats_num'); ?>"
+                        <a href="<?php echo 'https://api.whatsapp.com/send?phone=' . str_replace('+','',get_option('qlcd_woo_chatbot_whats_num')); ?>"
                            target="_blank"><span class="intergration-whats"
                                                  title="<?php _e('WhatsApp', 'woochatbot'); ?>"></span></a>
                     <?php } ?>
@@ -113,6 +173,19 @@ function woo_chatbot_load_footer_html()
                                     class="intergration-phone"
                                     title="<?php _e('Phone', 'woochatbot'); ?>"> </span></a>
                     <?php } ?>
+
+                    <?php if (get_option('enable_woo_chatbot_floating_livechat') == 1 && get_option('enable_woo_chatbot_floating_livechat') != "") { ?>
+                        <?php if(get_option('woo_custom_icon_livechat')!=''): ?>
+                            <a href="#" id="woobot_live_chat_floating_btn" title="Live Chat">
+                                <span style="background:url(<?php echo get_option('woo_custom_icon_livechat'); ?>);background-size: 40px;"></span>
+                            </a>
+                        <?php else: ?>
+                            <a href="#" id="woobot_live_chat_floating_btn" title="Live Chat">
+                                <span><i class="fa fa-commenting" aria-hidden="true"></i></span>
+                            </a>
+                        <?php endif; ?>
+                    <?php } ?>
+
                     <?php if (get_option('enable_woo_chatbot_floating_link') == 1 && get_option('qlcd_woo_chatbot_weblink') != "") { ?>
                         <a href="<?php echo get_option('qlcd_woo_chatbot_weblink'); ?>" target="_blank"><span
                                     class="intergration-weblink" title="<?php _e('Web Link', 'woochatbot'); ?>"></span></a>
@@ -204,7 +277,7 @@ function woo_chatbot_load_footer_html()
                         if (d.getElementById(id)) return;
                         js = d.createElement(s);
                         js.id = id;
-                        js.src = 'https://connect.facebook.net/en_US/sdk.js';
+                        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
                         fjs.parentNode.insertBefore(js, fjs);
                     }(document, 'script', 'facebook-jssdk'));
                 </script>
@@ -252,7 +325,7 @@ function woo_chatbot_load_controlling()
     if (get_option('woo_chatbot_show_pages') == 'off') {
         $woo_chatbot_select_pages = unserialize(get_option('woo_chatbot_show_pages_list'));
         if (is_page() && !empty($woo_chatbot_select_pages)) {
-            if (in_array(get_the_ID(), $woo_chatbot_select_pages) == true) {
+            if (@in_array(get_the_ID(), $woo_chatbot_select_pages) == true) {
                 $woo_chatbot_load = true;
             } else {
                 $woo_chatbot_load = false;
@@ -280,6 +353,33 @@ function woo_chatbot_load_controlling()
             $woo_chatbot_load = true;
         }
     }
+	
+	
+	if (get_option('woo_chatbot_show_cart') == 'off') {
+        if (is_cart()) {
+            $woo_chatbot_load = false;
+        }
+    }
+	if (get_option('woo_chatbot_show_checkout') == 'off') {
+        if (is_checkout()) {
+            $woo_chatbot_load = false;
+        }
+    }
+	if (is_page()){
+        $page_id = get_the_ID();
+        $exclude_pages = unserialize(get_option('woo_chatbot_exclude_pages_list'));
+		if(is_array($exclude_pages) && in_array($page_id, $exclude_pages)){
+			$woo_chatbot_load = false;
+		}
+    }
+
+	
+	// Disable in post types
+	$post_list = unserialize(get_option('woo_chatbot_exclude_post_list'));
+	if(@in_array(get_post_type(), $post_list)){
+		$woo_chatbot_load = false;
+	}
+	
 
     return $woo_chatbot_load;
 }
@@ -335,6 +435,7 @@ function woo_chatbot_check_opening_hours()
 
 //WoowBot shortcode.
 add_shortcode('woowbot', 'woo_chatbot_short_code');
+add_shortcode('WoowBot', 'woo_chatbot_short_code');
 function woo_chatbot_short_code($atts = [])
 {
     ob_start();
@@ -378,8 +479,15 @@ function woo_chatbot_shortcode_dom($atts)
         //Get Woocommerce cart
         global $woocommerce;
         $cart_items_number = $woocommerce->cart->cart_contents_count;
-        $qcld_woo_chatbot_theme = 'template-' . $template;
-        if (file_exists(QCLD_WOOCHATBOT_PLUGIN_DIR_PATH . '/templates/' . $qcld_woo_chatbot_theme . '/style.css')) {
+        
+		if($template=='mini'){
+			$qcld_woo_chatbot_theme = $template.'-mode';
+		}else{
+			$qcld_woo_chatbot_theme = 'template-' . $template;
+		}
+        
+		
+		if (file_exists(QCLD_WOOCHATBOT_PLUGIN_DIR_PATH . '/templates/' . $qcld_woo_chatbot_theme . '/style.css')) {
             wp_register_style('qcld-woo-chatbot-style', plugins_url(basename(plugin_dir_path(__FILE__)) . '/templates/' . $qcld_woo_chatbot_theme . '/style.css', basename(__FILE__)), '', QCLD_WOOCHATBOT_VERSION, 'screen');
             wp_enqueue_style('qcld-woo-chatbot-style');
         }
@@ -435,6 +543,7 @@ function woo_chatbot_shortcode_dom($atts)
 <?php
 //Create shortcode for WoowBot for pages.
 add_shortcode('woowbot-page', 'woo_chatbot_page_short_code');
+add_shortcode('WoowBot-page', 'woo_chatbot_page_short_code');
 function woo_chatbot_page_short_code()
 {
     ob_start();
@@ -526,6 +635,15 @@ function woo_chatbot_mobile_app_short_code()
     <?php
 }
 
+function qcld_woo_check_thumb($productid){
+	if(get_option('disable_woo_no_image_product')==1){
+		if(!has_post_thumbnail($productid)){
+			return false;
+		}
+	}
+	return true;
+}
+
 /**
  * WoowBot Search keyword product
  */
@@ -534,6 +652,8 @@ add_action('wp_ajax_nopriv_qcld_woo_chatbot_keyword', 'qcld_woo_chatbot_keyword'
 function qcld_woo_chatbot_keyword()
 {
     $keyword = sanitize_text_field($_POST['keyword']);
+	
+	
     $product_per_page = get_option('qlcd_woo_chatbot_ppp') != '' ? get_option('qlcd_woo_chatbot_ppp') : 10;
     if (get_option('qlcd_woo_chatbot_search_option') == 'standard') {
         $product_orderby = get_option('qlcd_woo_chatbot_product_orderby') != '' ? get_option('qlcd_woo_chatbot_product_orderby') : 'title';
@@ -543,8 +663,8 @@ function qcld_woo_chatbot_keyword()
             'post_type' => 'product',
             'post_status' => 'publish',
             'posts_per_page' => $product_per_page,
-            'orderby' => $product_orderby,
-            'order' => $product_order,
+            /*'orderby' => $product_orderby,
+            'order' => $product_order,*/
             's' => $keyword,
         );
         /******
@@ -555,7 +675,7 @@ function qcld_woo_chatbot_keyword()
         //Getting total product number by string.
         $total_argu = array('post_type' => 'product', 's' => $keyword, 'posts_per_page' => 100);
         $total_query = new WP_Query($total_argu);
-        $total_product_num = $total_query->post_count;
+        $total_product_num = 0;
         $html = '<div class="woo-chatbot-products-area">';
         $_pf = new WC_Product_Factory();
         //repeating the products
@@ -563,14 +683,15 @@ function qcld_woo_chatbot_keyword()
             $html .= '<ul class="woo-chatbot-products">';
             while ($product_query->have_posts()) : $product_query->the_post();
                 $product = $_pf->get_product(get_the_ID());
-                if (woo_chatbot_product_controlling(get_the_ID()) == true && $product->is_visible()) {
+                if (woo_chatbot_product_controlling(get_the_ID()) == true && $product->is_visible() && qcld_woo_check_thumb(get_the_ID())) {
+					$total_product_num++;
                     $html .= '<li class="woo-chatbot-product">';
-                    $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '"  woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->post->post_title ? $product->post->post_title : get_the_ID()) . '">';
+                    $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '"  woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->get_title() ? $product->get_title(): get_the_ID()) . '">';
                     $html .= get_the_post_thumbnail(get_the_ID(), 'shop_catalog') . '
                        <div class="woo-chatbot-product-summary">
                        <div class="woo-chatbot-product-table">
                        <div class="woo-chatbot-product-table-cell">
-                       <h3 class="woo-chatbot-product-title">' . $product->post->post_title . '</h3>
+                       <h3 class="woo-chatbot-product-title">' . $product->get_title() . '</h3>
                        <div class="price">' . $product->get_price_html() . '</div>';
                     $html .= ' </div>
                        </div>
@@ -589,7 +710,7 @@ function qcld_woo_chatbot_keyword()
         $result = WoowBot_Search::factory()->search($keyword);
         $products = $result['products'];
         $product_num = count($result['products']);
-        $total_product_num = $result['total_products'];
+        $total_product_num = 0;
         $more_product_ids = implode(",", $result['more_ids']);
         $html = '<div class="woo-chatbot-products-area">';
         $_pf = new WC_Product_Factory();
@@ -597,7 +718,8 @@ function qcld_woo_chatbot_keyword()
         if ($product_num > 0) {
             $html .= '<ul class="woo-chatbot-products">';
             foreach ($products as $product) {
-                if (woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible()) {
+                if (is_object( $product ) && woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible() && qcld_woo_check_thumb($product->get_id())) {
+					$total_product_num++;
                     $html .= '<li class="woo-chatbot-product">';
                     $html .= '<a target="_blank" href="' . get_permalink($product->get_id()) . '" woo-chatbot-pid= "' . $product->get_id() . '"  title="' . esc_attr($product->get_title()) . '">';
                     $html .= get_the_post_thumbnail($product->get_id(), 'shop_catalog') . '
@@ -618,6 +740,309 @@ function qcld_woo_chatbot_keyword()
     }
     $response = array('html' => $html, 'product_num' => $total_product_num, 'per_page' => $product_per_page);
     echo wp_send_json($response);
+    wp_die();
+}
+
+/*==messenger product search function */
+
+function qcld_woo_chatbot_keyword_mca($keyword)
+{
+    $keyword = sanitize_text_field($keyword);
+    $product_per_page = get_option('qlcd_woo_chatbot_ppp') != '' ? get_option('qlcd_woo_chatbot_ppp') : 10;
+	
+	$response = array();
+	$response['status'] = 'fail';
+	
+    if (get_option('qlcd_woo_chatbot_search_option') == 'standard') {
+        $product_orderby = get_option('qlcd_woo_chatbot_product_orderby') != '' ? get_option('qlcd_woo_chatbot_product_orderby') : 'title';
+        $product_order = get_option('qlcd_woo_chatbot_product_order') != '' ? get_option('qlcd_woo_chatbot_product_order') : 'ASC';
+        //Merging all query together.
+        $argu_params = array(
+            'post_type' => 'product',
+            'post_status' => 'publish',
+            'posts_per_page' => $product_per_page,
+            /*'orderby' => $product_orderby,
+            'order' => $product_order,*/
+            's' => $keyword,
+        );
+        /******
+         *WP Query Operation to get products.*
+         *******/
+        $product_query = new WP_Query($argu_params);
+        $product_num = $product_query->post_count;
+        //Getting total product number by string.
+        $total_argu = array('post_type' => 'product', 's' => $keyword, 'posts_per_page' => 100);
+        $total_query = new WP_Query($total_argu);
+        $total_product_num = $total_query->post_count;
+       
+        $_pf = new WC_Product_Factory();
+        //repeating the products
+        if ($product_num > 0) {
+			
+			$response['status'] = 'success';
+			$response['results'] = array();
+			
+            
+            while ($product_query->have_posts()) : $product_query->the_post();
+                $product = $_pf->get_product(get_the_ID());
+                if (woo_chatbot_product_controlling(get_the_ID()) == true && $product->is_visible()) {
+
+					$response['results'][] = array(
+						'imgurl'=>get_the_post_thumbnail_url(get_the_ID(), 'shop_catalog'),
+						'link'=>get_permalink(get_the_ID()),
+						'title'=>$product->get_title(),
+						'subtitle'=> get_woocommerce_currency_symbol().wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) )
+					);
+					
+                }
+            endwhile;
+            wp_reset_postdata();
+            
+
+        }else{
+			$texts = unserialize(get_option('qlcd_woo_chatbot_product_fail'));
+			$response['message'] = $texts[array_rand($texts)];
+		}
+        
+    } else if (get_option('qlcd_woo_chatbot_search_option') == 'advanced') {
+        $result = WoowBot_Search::factory()->search($keyword);
+        $products = $result['products'];
+        $product_num = count($result['products']);
+        $total_product_num = $result['total_products'];
+        $more_product_ids = implode(",", $result['more_ids']);
+        
+        $_pf = new WC_Product_Factory();
+        //repeating the products
+        if ($product_num > 0) {
+			
+            $response['status'] = 'success';
+			$response['results'] = array();
+			
+            foreach ($products as $product) {
+                if (is_object( $product ) && woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible()) {
+
+					$response['results'][] = array(
+						'imgurl'=>get_the_post_thumbnail_url($product->get_id(), 'shop_catalog'),
+						'link'=>get_permalink($product->get_id()),
+						'title'=>$product->get_title(),
+						'subtitle'=>get_woocommerce_currency_symbol().wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) )
+					);
+                }
+            }
+            
+            
+        }else{
+			$texts = unserialize(get_option('qlcd_woo_chatbot_product_fail'));
+			$response['message'] = $texts[array_rand($texts)];
+		}
+        
+    }
+
+    return $response;
+    wp_die();
+}
+
+/*==messenger product by category function */
+
+function qcld_woo_chatbot_catalog_mca($catid)
+{
+    $keyword = sanitize_text_field($keyword);
+    $product_per_page = get_option('qlcd_woo_chatbot_ppp') != '' ? get_option('qlcd_woo_chatbot_ppp') : 10;
+	
+	$response = array();
+	$response['status'] = 'fail';
+	
+		$product_per_page = get_option('qlcd_woo_chatbot_ppp') != '' ? get_option('qlcd_woo_chatbot_ppp') : 10;
+        $product_orderby = get_option('qlcd_woo_chatbot_product_orderby') != '' ? get_option('qlcd_woo_chatbot_product_orderby') : 'title';
+        $product_order = get_option('qlcd_woo_chatbot_product_order') != '' ? get_option('qlcd_woo_chatbot_product_order') : 'ASC';
+        //Merging all query together.
+        $argu_params = array(
+			'post_type' => 'product',
+			'post_status' => 'publish',
+			'ignore_sticky_posts' => 1,
+			'orderby' => $product_orderby,
+			'order' => $product_order,
+			'posts_per_page' => $product_per_page,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'product_cat',
+					'field' => 'term_id',
+					'terms' => $catid,
+					'operator' => 'IN'
+				)
+			)
+		);
+        /******
+         *WP Query Operation to get products.*
+         *******/
+        $product_query = new WP_Query($argu_params);
+        $product_num = $product_query->post_count;
+        //Getting total product number by string.
+        
+       
+        $_pf = new WC_Product_Factory();
+        //repeating the products
+        if ($product_num > 0) {
+			
+			$response['status'] = 'success';
+			$response['results'] = array();
+			
+            
+            while ($product_query->have_posts()) : $product_query->the_post();
+                $product = $_pf->get_product(get_the_ID());
+                if (woo_chatbot_product_controlling(get_the_ID()) == true && $product->is_visible()) {
+
+					$response['results'][] = array(
+						'imgurl'=>get_the_post_thumbnail_url(get_the_ID(), 'shop_catalog'),
+						'link'=>get_permalink(get_the_ID()),
+						'title'=>$product->get_title(),
+						'subtitle'=> get_woocommerce_currency_symbol().wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) )
+					);
+					
+                }
+            endwhile;
+            wp_reset_postdata();
+            
+
+        }else{
+			$texts = unserialize(get_option('qlcd_woo_chatbot_product_fail'));
+			$response['message'] = $texts[array_rand($texts)];
+		}
+        
+    
+
+    return $response;
+    wp_die();
+}
+
+/* featured product */
+function qcld_woo_chatbot_keyword_featured_mca()
+{
+    $product_per_page = get_option('qlcd_woo_chatbot_ppp') != '' ? get_option('qlcd_woo_chatbot_ppp') : 10;
+    $product_orderby = get_option('qlcd_woo_chatbot_product_orderby') != '' ? get_option('qlcd_woo_chatbot_product_orderby') : 'title';
+    $product_order = get_option('qlcd_woo_chatbot_product_order') != '' ? get_option('qlcd_woo_chatbot_product_order') : 'ASC';
+    //get featured products query.
+    $argu_params = array(
+        'posts_per_page' => $product_per_page,
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'tax_query' => array(array('taxonomy' => 'product_visibility', 'field' => 'name', 'terms' => 'featured'))
+    );
+    /******
+     *WP Query Operation to get products.*
+     *******/
+    $product_query = new WP_Query($argu_params);
+    $product_num = $product_query->post_count;
+    //Getting total product number by string.
+    $total_argu = array(
+        'posts_per_page' => 100,
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'tax_query' => array(array('taxonomy' => 'product_visibility', 'field' => 'name', 'terms' => 'featured',),)
+    );
+    $total_query = new WP_Query($total_argu);
+    $total_product_num = $total_query->post_count;
+	
+    $response = array();
+	$response['status'] = 'fail';
+	
+    $_pf = new WC_Product_Factory();
+    //repeating the products
+    if ($product_num > 0) {
+        $response['status'] = 'success';
+		$response['results'] = array();
+       
+        while ($product_query->have_posts()) : $product_query->the_post();
+            $product = $_pf->get_product(get_the_ID());
+            if ($product->is_visible()) { // Display if visible
+                
+				$response['results'][] = array(
+					'imgurl'=>get_the_post_thumbnail_url(get_the_ID(), 'shop_catalog'),
+					'link'=>get_permalink(get_the_ID()),
+					'title'=>$product->get_title(),
+					'subtitle'=>get_woocommerce_currency_symbol().wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) )
+				);
+				
+            }
+        endwhile;
+        wp_reset_postdata();
+        
+        
+    }else{
+		$texts = unserialize(get_option('qlcd_woo_chatbot_product_fail'));
+		$response['message'] = $texts[array_rand($texts)];
+	}
+	
+	return $response;
+    wp_die();
+    
+}
+/* Sale Product */
+function qcld_woo_chatbot_keyword_sale_mca()
+{
+    $product_per_page = get_option('qlcd_woo_chatbot_ppp') != '' ? get_option('qlcd_woo_chatbot_ppp') : 10;
+    $product_orderby = get_option('qlcd_woo_chatbot_product_orderby') != '' ? get_option('qlcd_woo_chatbot_product_orderby') : 'title';
+    $product_order = get_option('qlcd_woo_chatbot_product_order') != '' ? get_option('qlcd_woo_chatbot_product_order') : 'ASC';
+    //get sale products query.
+    $argu_params = array(
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'ignore_sticky_posts' => 1,
+        'posts_per_page' => $product_per_page,
+        'orderby' => $product_orderby,
+        'order' => $product_order,
+        //'offset' => $offset,
+        'meta_query' => WC()->query->get_meta_query(),
+        'post__in' => array_merge(array(0), wc_get_product_ids_on_sale())
+    );
+	
+	$response = array();
+	$response['status'] = 'fail';
+	
+    /******
+     *WP Query Operation to get products.*
+     *******/
+    $product_query = new WP_Query($argu_params);
+    $product_num = $product_query->post_count;
+    //Getting total product number by string.
+    $total_argu = array(
+        'post_type' => 'product',
+        'post_status' => 'publish',
+        'posts_per_page' => 100,
+        'meta_query' => WC()->query->get_meta_query(),
+        'post__in' => array_merge(array(0), wc_get_product_ids_on_sale())
+    );
+    $total_query = new WP_Query($total_argu);
+    $total_product_num = $total_query->post_count;
+    
+    $_pf = new WC_Product_Factory();
+    //repeating the products
+    if ($product_num > 0) {
+        
+        $response['status'] = 'success';
+		$response['results'] = array();
+		
+        while ($product_query->have_posts()) : $product_query->the_post();
+            $product = $_pf->get_product(get_the_ID());
+            if ($product->is_visible()) { // Display if visible
+
+				$response['results'][] = array(
+					'imgurl'=>get_the_post_thumbnail_url(get_the_ID(), 'shop_catalog'),
+					'link'=>get_permalink(get_the_ID()),
+					'title'=>$product->get_title(),
+					'subtitle'=>get_woocommerce_currency_symbol().wc_get_price_to_display( $product, array( 'price' => $product->get_price() ) )
+				);
+				
+            }
+        endwhile;
+        wp_reset_postdata();
+        
+    }else{
+		$texts = unserialize(get_option('qlcd_woo_chatbot_product_fail'));
+		$response['message'] = $texts[array_rand($texts)];
+	}
+    
+	return $response;
     wp_die();
 }
 
@@ -829,7 +1254,7 @@ function woo_chatbot_product_controlling($product_id)
     //Controlling Out of Stock product display from back end.
     $_pf = new WC_Product_Factory();
     $product = $_pf->get_product($product_id);
-    if ($product->manage_stock == 'yes' && $product->stock_quantity <= 0 && get_option('woo_chatbot_exclude_stock_out_product') == 1) {
+    if ($product->get_manage_stock() == 'yes' && $product->get_stock_quantity() <= 0 && get_option('woo_chatbot_exclude_stock_out_product') == 1) {
         $display_product = false;
     }
     return $display_product;
@@ -934,7 +1359,7 @@ function qcld_woo_chatbot_load_more()
         $html = '';
         if ($product_num > 0) {
             foreach ($products as $product) {
-                if ($product->is_visible()) { // Display if visible
+                if (is_object( $product ) && $product->is_visible()) { // Display if visible
                     $html .= '<li class="woo-chatbot-product">';
                     $html .= '<a target="_blank" href="' . get_permalink($product->get_id()) . '" woo-chatbot-pid= "' . $product->get_id() . '"  title="' . esc_attr($product->get_title()) . '">';
                     $html .= get_the_post_thumbnail($product->get_id(), 'shop_catalog') . '
@@ -1011,12 +1436,12 @@ function qcld_woo_chatbot_load_more()
                 $product = $_pf->get_product(get_the_ID());
                 if ($product->is_visible()) { // Display if visible
                     $html .= '<li class="woo-chatbot-product">';
-                    $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '"  woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->post->post_title ? $product->post->post_title : get_the_ID()) . '">';
+                    $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '"  woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->get_title() ? $product->get_title() : get_the_ID()) . '">';
                     $html .= get_the_post_thumbnail(get_the_ID(), 'shop_catalog') . '
                    <div class="woo-chatbot-product-summary">
                    <div class="woo-chatbot-product-table">
                    <div class="woo-chatbot-product-table-cell">
-                   <h3 class="woo-chatbot-product-title">' . $product->post->post_title . '</h3>
+                   <h3 class="woo-chatbot-product-title">' . $product->get_title() . '</h3>
                    <div class="price">' . $product->get_price_html() . '</div>';
                     $html .= ' </div>
                    </div>
@@ -1045,9 +1470,10 @@ function qcld_woo_chatbot_product_details()
     //Woocommerce product factory
     $wc_pf = new WC_Product_Factory();
     $product = $wc_pf->get_product($product_id);
+	if(is_object( $product )){
     $product_type = $wc_pf->get_product_type($product_id);
     $product_title = '<h2 id="woo-chatbot-product-title" ><a target="_blank" href="' . get_permalink($product->get_id()) . '">' . $product->get_title() . '</a></h2>';
-    $product_desc = apply_filters('the_excerpt', $product->post->post_excerpt);//$product->post->post_excerpt;
+    $product_desc = apply_filters('the_excerpt', $product->get_description());//$product->post->post_excerpt;
     $gallery_ids = $product->get_gallery_image_ids();
     //images processing..
     $product_feature_image_id = get_post_thumbnail_id($product_id);
@@ -1136,6 +1562,7 @@ function qcld_woo_chatbot_product_details()
     //$response=$full_size_image;
     $response = array('title' => $product_title, 'description' => $product_desc, 'image' => $product_image, 'price' => $product_price, 'sku' => $product_sku, 'quantity' => $product_quantity, 'buttton' => $add_cart_button, 'variation' => $variations, 'type' => $product_type, 'debug' => $debug);
     echo wp_send_json($response);
+	}
     wp_die();
 }
 
@@ -1184,7 +1611,7 @@ function qcld_woo_chatbot_add_to_cart()
     wp_die();
 }
 
-//Support part
+//Support Email
 add_action('wp_ajax_qcld_woo_chatbot_support_email', 'qcld_woo_chatbot_support_email');
 add_action('wp_ajax_nopriv_qcld_woo_chatbot_support_email', 'qcld_woo_chatbot_support_email');
 function qcld_woo_chatbot_support_email()
@@ -1223,7 +1650,9 @@ function qcld_woo_chatbot_support_email()
         $headers[] = 'From: ' . $name . ' <' . $fromEmail . '>';
         $headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
         $result = wp_mail($to, $subject, $body, $headers);
-        if ($result) {
+        //$response['message'] = 'to:'.$to.', $subject='.$subject.', $body='. $body.'$headers='.$headers;
+	   
+	    if ($result) {
             $response['status'] = 'success';
             $response['message'] = str_replace('\\', '', get_option('qlcd_woo_chatbot_email_sent'));
         }
@@ -1438,7 +1867,7 @@ function qcld_woo_chatbot_step_by_step_search()
     if ($product_num > 0) {
         $html .= '<ul class="woo-chatbot-products">';
         foreach ($products as $product) {
-            if (woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible()) {
+            if (is_object( $product ) && woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible()) {
                 $html .= '<li class="woo-chatbot-product">';
                 $html .= '<a target="_blank" href="' . get_permalink($product->get_id()) . '" woo-chatbot-pid= "' . $product->get_id() . '"  title="' . esc_attr($product->get_title()) . '">';
                 $html .= get_the_post_thumbnail($product->get_id(), 'shop_catalog') . '
@@ -1509,7 +1938,32 @@ function qcld_get_step_by_step_post_ids($keys, $price, $counter)
         foreach ($search_results as $search_result) {
             $post_id = intval($search_result->ID);
             if (!in_array($post_id, $posts_ids)) {
-                $posts_ids[] = $post_id;
+               
+			   //added by Raju, QC
+			   $terms =  get_the_terms( $post_id, 'product_tag' );
+			   $tags = array();
+				if( count($terms) > 0 ){
+					foreach($terms as $term){
+						$term_slug = $term->slug; // Product tag slug
+						$tags[] = $term_slug;
+					}
+				}
+			   
+			   $total_matched = count(array_intersect(array_map('strtolower',$keys), array_map('strtolower',$tags))); 
+			   $total_keys = count($keys);
+			   //var_dump($total_matched);
+			   //var_dump($tags);
+			  // var_dump($keys);
+			   
+			   $containsSearch = count(array_intersect($keys, $tags)) == count($keys);
+			   //var_dump($containsSearch);
+			  // if($containsSearch){
+				if($total_matched == $total_keys){  
+				   $posts_ids[] = $post_id;
+			   }
+			   
+			   //added by Raju end
+			    
             }
         }
     }
@@ -1548,12 +2002,12 @@ function step_by_step_search_sql_prepare($search_tags, $price, $counter)
         for ($i = 0; $i < count($search_terms); $i = $i + 1) {
             foreach ($kbx_taxs as $tax) {
                 if ($i == 0) {
-                    $where .= $wpdb->prepare("(tt.taxonomy = '%s' AND t.name = '%s')", $tax, $search_terms[$i]);
+                    $where .= $wpdb->prepare("(tt.taxonomy = '%s' AND t.slug = '%s')", strtolower($tax), $search_terms[$i]);
                 } else {
                     if ($i >= $counter) {
-                        $where .= $wpdb->prepare("AND (tt.taxonomy = '%s' AND t.name = '%s')", $tax, $search_terms[$i]);
+                        $where .= $wpdb->prepare("AND (tt.taxonomy = '%s' AND t.slug = '%s')", strtolower($tax), $search_terms[$i]);
                     } else {
-                        $where .= $wpdb->prepare("OR (tt.taxonomy = '%s' AND t.name = '%s')", $tax, $search_terms[$i]);
+                        $where .= $wpdb->prepare("OR (tt.taxonomy = '%s' AND t.slug = '%s')", strtolower($tax), $search_terms[$i]);
                     }
 
                 }
@@ -1614,7 +2068,10 @@ function step_by_step_search_sql_prepare($search_tags, $price, $counter)
      * @param    bool $boolean_mode Set BOOLEAN mode for FULLTEXT searching
      * @param    bool $bydate Sort by date?
      */
-    return apply_filters('woowbot_step_serach_sql_prepare', $sql, $search_tags);
+   
+   $apply_filters = apply_filters('woowbot_step_serach_sql_prepare', $sql, $search_tags);
+   //var_dump($apply_filters); 
+    return  $apply_filters;
     /***
      * Table Joins for taxonomies
      */
@@ -1714,12 +2171,12 @@ function qcld_woo_chatbot_recently_viewed_products()
             $product = $_pf->get_product(get_the_ID());
             if ($product->is_visible()) { // Display if visible
                 $html .= '<li class="woo-chatbot-product">';
-                $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '" woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->post->post_title ? $product->post->post_title : get_the_ID()) . '">';
+                $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '" woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->get_title() ? $product->get_title() : get_the_ID()) . '">';
                 $html .= get_the_post_thumbnail(get_the_ID(), 'shop_catalog') . '
                <div class="woo-chatbot-product-summary">
                <div class="woo-chatbot-product-table">
                <div class="woo-chatbot-product-table-cell">
-               <h3 class="woo-chatbot-product-title">' . $product->post->post_title . '</h3>
+               <h3 class="woo-chatbot-product-title">' . $product->get_title() . '</h3>
                <div class="price">' . $product->get_price_html() . '</div>';
                 $html .= ' </div>
                </div>
@@ -1791,12 +2248,12 @@ function qcld_woo_chatbot_recently_viewed_shortcode()
             $product = $_pf->get_product(get_the_ID());
             if ($product->is_visible()) { // Display if visible
                 $html .= '<li class="woo-chatbot-product">';
-                $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '" woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->post->post_title ? $product->post->post_title : get_the_ID()) . '">';
+                $html .= '<a target="_blank" href="' . get_permalink(get_the_ID()) . '" woo-chatbot-pid= "' . get_the_ID() . '" title="' . esc_attr($product->get_title() ? $product->get_title() : get_the_ID()) . '">';
                 $html .= get_the_post_thumbnail(get_the_ID(), 'shop_catalog') . '
                <div class="woo-chatbot-product-summary">
                <div class="woo-chatbot-product-table">
                <div class="woo-chatbot-product-table-cell">
-               <h3 class="woo-chatbot-product-title">' . $product->post->post_title . '</h3>
+               <h3 class="woo-chatbot-product-title">' . $product->get_title() . '</h3>
                <div class="price">' . $product->get_price_html() . '</div>';
                 $html .= ' </div>
                </div>
@@ -1861,10 +2318,10 @@ function qcld_woo_chatbot_show_cart()
         $html .= ' </div>';//End of cart body
         $html .= '<div class="woo-chatbot-cart-single">
                             <div class="qcld-woo-chatbot-cell"></div>
-                            <div class="qcld-woo-chatbot-cell"><strong>Total</strong></div>
+                            <div class="qcld-woo-chatbot-cell"><strong>'. randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_total'))) .'</strong></div>
                             <div class="qcld-woo-chatbot-cell"><strong>' . $woocommerce->cart->get_cart_total() . '</strong></div>
                         </div>';
-        $html .= '<div class="woo-chatbot-cart-footer"><div class="qcld-woo-chatbot-cart-page"><a class="woo-chatbot-cart-link" href="' . $cart_url . '" target="_blank"  >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_link'))) . '</a></div><div class="qcld-woo-chatbot-checkout"><a class="woo-chatbot-checkout-link" href="' . $checkout_url . '" target="_blank"  >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_checkout_link'))) . '</a></div></div>';
+        $html .= '<div class="woo-chatbot-cart-footer"><div class="qcld-woo-chatbot-cart-page"><a class="woo-chatbot-cart-link" href="' . $cart_url . '" target="_blank"  >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_link'))) . '</a></div><div class="qcld-woo-chatbot-checkout"><a class="woo-chatbot-checkout-link" href="' . $checkout_url . '"   >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_checkout_link'))) . '</a></div></div>';
         $html .= ' </div>';
     } else {
         $html .= '<div class="woo-chatbot-cart-container">';
@@ -1910,7 +2367,7 @@ function qcld_woo_chatbot_only_cart()
         $html .= ' </div>';//End of cart body
         $html .= '<div class="woo-chatbot-cart-single">
                             <div class="qcld-woo-chatbot-cell"></div>
-                            <div class="qcld-woo-chatbot-cell"><strong>Total</strong></div>
+                            <div class="qcld-woo-chatbot-cell"><strong>'. randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_total'))) .'</strong></div>
                             <div class="qcld-woo-chatbot-cell"><strong>' . $woocommerce->cart->get_cart_total() . '</strong></div>
                         </div>';
         $html .= '<div class="woo-chatbot-cart-footer"><div class="qcld-woo-chatbot-cart-page"><a class="woo-chatbot-cart-link" href="' . $cart_url . '" target="_blank"  >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_link'))) . '</a></div><div class="qcld-woo-chatbot-checkout"><a class="woo-chatbot-checkout-link" href="' . $checkout_url . '" target="_blank"  >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_checkout_link'))) . '</a></div></div>';
@@ -1966,7 +2423,7 @@ function qcld_woo_chatbot_cart_shortcode()
         $html .= ' </div>';//End of cart body
         $html .= '<div class="woo-chatbot-cart-single">
                             <div class="qcld-woo-chatbot-cell"></div>
-                            <div class="qcld-woo-chatbot-cell"><strong>Total</strong></div>
+                            <div class="qcld-woo-chatbot-cell"><strong>'. randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_total'))) .'</strong></div>
                             <div class="qcld-woo-chatbot-cell"><strong>' . $woocommerce->cart->get_cart_total() . '</strong></div>
                         </div>';
         $html .= '<div class="woo-chatbot-cart-footer"><div class="qcld-woo-chatbot-cart-page"><a href="' . site_url() . '/cart" target="_blank" >' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_cart_link'))) . '</a></div><div class="qcld-woo-chatbot-checkout"><a href="' . site_url() . '/checkout" target="_blank">' . randmom_message_handle(unserialize(get_option('qlcd_woo_chatbot_checkout_link'))) . '</a></div></div>';
@@ -2181,12 +2638,12 @@ function qcld_woo_chatbot__redirect_after_purchase($order_get_id)
         if (is_checkout() && !empty($wp->query_vars['order-received'])) {
             $thanks_page_id = get_option('woo_chatbot_app_order_thankyou');
             $thanks_parmanlink = esc_url(get_permalink($thanks_page_id));
-            wp_redirect($thanks_parmanlink . '?order_id=' . $order_get_id);
+            wp_redirect($thanks_parmanlink . '?order_id=' . $order_get_id);exit;
             exit;
         }
     } else {
         remove_action('woocommerce_thankyou', 'qcld_woo_chatbot__redirect_after_purchase');
-        do_action('woocommerce_thankyou', $order_get_id);
+        //do_action('woocommerce_thankyou', $order_get_id);
     }
 }
 
@@ -2259,7 +2716,7 @@ function qcld_woochatbot_product_search_api($keyword)
         if ($product_num > 0) {
             $html .= '<ul class="woo-chatbot-products">';
             foreach ($products as $product) {
-                if (woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible()) {
+                if (is_object( $product ) && woo_chatbot_product_controlling($product->get_id()) == true && $product->is_visible()) {
                     $html .= '<li class="woo-chatbot-product">';
                     $html .= '<a target="_blank" href="' . get_permalink($product->get_id()) . '" woo-chatbot-pid= "' . $product->get_id() . '"  title="' . esc_attr($product->get_title()) . '">';
                     $html .= get_the_post_thumbnail($product->get_id(), 'shop_catalog') . '
@@ -2406,7 +2863,7 @@ function qcld_woochatbot_load_more_api($offset, $search_type, $search_term)
         $html = '';
         if ($product_num > 0) {
             foreach ($products as $product) {
-                if ($product->is_visible()) { // Display if visible
+                if (is_object( $product ) && $product->is_visible()) { // Display if visible
                     $html .= '<li class="woo-chatbot-product">';
                     $html .= '<a target="_blank" href="' . get_permalink($product->get_id()) . '" woo-chatbot-pid= "' . $product->get_id() . '"  title="' . esc_attr($product->get_title()) . '">';
                     $html .= get_the_post_thumbnail($product->get_id(), 'shop_catalog') . '
@@ -2543,12 +3000,25 @@ function qcld_woochatbot_config_api()
         'agent_image' => get_option('woo_chatbot_agent_image'),
         'agent_image_path' => qcld_woo_chatbot_agent_icon_api(),
         'shopper_demo_name' => str_replace('\\', '', get_option('qlcd_woo_chatbot_shopper_demo_name')),
+		'shopper_call_you' => str_replace('\\', '', get_option('qlcd_woo_chatbot_shopper_call_you')),
         'agent_join' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_agent_join'))),
         'welcome' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_welcome'))),
         'welcome_back' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_welcome_back'))),
         'hi_there' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_hi_there'))),
         'asking_name' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_asking_name'))),
-        'i_am' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_i_am'))),
+        'asking_emailaddress' => str_replace('\\', '', get_option('qlcd_woo_chatbot_asking_emailaddress')),
+		'got_email' => str_replace('\\', '', get_option('qlcd_woo_chatbot_got_email')), 
+		'email_ignore' => str_replace('\\', '', get_option('qlcd_woo_chatbot_email_ignore')),
+		
+		
+		'email_subscription' => get_option('qlcd_woo_email_subscription'),	
+		'do_you_want_to_subscribe' => get_option('do_you_want_to_subscribe'),	
+		'email_subscription_success' => get_option('qlcd_woo_email_subscription_success'),	
+		'email_already_subscribe' => get_option('qlcd_woo_email_already_subscribe'),	
+		
+		
+		
+		'i_am' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_i_am'))),
         'name_greeting' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_name_greeting'))),
         'wildcard_msg' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_wildcard_msg'))),
         'empty_filter_msg' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_empty_filter_msg'))),
@@ -2623,6 +3093,7 @@ function qcld_woochatbot_config_api()
         'auto_open_once' => get_option('woo_chatbot_auto_open_once'),
         'proactive_bg_color' => get_option('woo_chatbot_proactive_bg_color'),
         'disable_feedback' => get_option('disable_woo_chatbot_feedback'),
+		'disable_email_subscription' => get_option('disable_email_subscription'),
         'feedback_label' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('qlcd_woo_chatbot_feedback_label'))),
         'enable_meta_title' => get_option('enable_woo_chatbot_meta_title'),
         'meta_label' => str_replace('\\', '', get_option('qlcd_woo_chatbot_meta_label')),
@@ -2640,6 +3111,7 @@ function qcld_woochatbot_config_api()
 
         'ai_df_token' => get_option('qlcd_woo_chatbot_dialogflow_client_token'),
         'df_defualt_reply' => str_replace('\\', '', get_option('qlcd_woo_chatbot_dialogflow_defualt_reply')),
+		'df_agent_lan' => get_option('qlcd_woo_chatbot_dialogflow_agent_language'),
         'custom_search_enable' => get_option('enable_woo_chatbot_custom_search'),
         'custom_intent_labels' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('custom_intent_label'))),
         'custom_intent_names' => qcld_woo_chatbot_str_replace_api(unserialize(get_option('custom_intent_name'))),
@@ -2669,4 +3141,251 @@ function qcld_woo_chatbot_agent_icon_api()
         $woo_chatbot_custom_icon_path = QCLD_WOOCHATBOT_IMG_URL . 'custom-agent.png';
     }
     return $woo_chatbot_custom_icon_path;
+}
+
+/* WPBot white label Addon check */
+function qcld_woowbot_is_active_white_label(){
+	include_once(ABSPATH.'wp-admin/includes/plugin.php');
+	if ( is_plugin_active( 'white-label-chatbot-addon/white-label-wpbot.php' ) ){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+
+function woowbot_menu_text(){
+
+    if(qcld_woowbot_is_active_white_label() && get_option('wpwo_word_wpbot_pro')!=''){
+        return get_option('wpwo_word_wpbot_pro');
+    }else{
+        return 'WoowBot Pro';
+    }
+
+}
+
+function woowbot_text(){
+
+    if(qcld_woowbot_is_active_white_label() && get_option('wpwo_word_wpbot')!=''){
+        return get_option('wpwo_word_wpbot');
+    }else{
+        return 'WoowBot';
+    }
+
+}
+
+function woowbot_License_page_callback_func(){
+    ob_start();
+    
+    
+    ?>
+
+<div class="wrap swpm-admin-menu-wrap">
+		
+
+			<div id="licensing">
+				<h1>Please Insert your license Key</h1>
+				<?php if( get_woowbot_valid_license() ){ ?>
+					<div class="qcld-success-notice">
+						<p>Thank you, Your License is active</p>
+					</div>
+				<?php } ?>
+				
+				<?php
+				
+					$track_domain_request = wp_remote_get(woowbot_LICENSING_PRODUCT_DEV_URL."wp-json/qc-domain-tracker/v1/getdomain/?license_key=".get_woowbot_licensing_key());
+					if( !is_wp_error( $track_domain_request ) || wp_remote_retrieve_response_code( $track_domain_request ) === 200 ){
+						$track_domain_result = json_decode($track_domain_request['body']);
+						
+						$max_domain_num = $track_domain_result[0]->max_domain + 1;
+						$total_domains = @json_decode($track_domain_result[0]->domain, true);
+						if(!empty($total_domains)){
+						$total_domains_num = count($total_domains);
+
+						if( $max_domain_num <= $total_domains_num){
+					?>
+							<div class="qcld-error-notice">
+								<p>You have activated this key for maximum number of sites allowed by your license. Please <a href='https://www.quantumcloud.com/products/'>purchase additional license.</a></p>
+							</div>
+					<?php
+						}
+						}
+						
+					}
+				?>
+				
+				<form onsubmit="return false" id="qc-license-form" method="post" action="options.php">
+					<?php
+						delete_woowbot_update_transient();
+						delete_woowbot_renew_transient();
+						
+						delete_option('_site_transient_update_plugins');
+						settings_fields( 'qcld_woowbot_license' );
+						do_settings_sections( 'qcld_woowbot_license' );
+
+						// if( isset($_POST['submit']) ){
+						// 	echo 'qcld_woowbot_buy_from_where '.$_POST['qcld_woowbot_buy_from_where'];
+						// }
+					?>
+					<table class="form-table">
+						
+
+						<tr id="quantumcloud_portfolio_license_row" style="display: none">
+							<th>
+								<label for="qcld_woowbot_enter_license_key">Enter License Key:</label>
+							</th>
+							<td>
+								<input type="<?php echo (get_woowbot_licensing_key()!=''?'password':'text'); ?>" id="qcld_woowbot_enter_license_key" name="qcld_woowbot_enter_license_key" class="regular-text" value="<?php echo get_woowbot_licensing_key(); ?>">
+								<p>You can copy the license key from <a target="_blank" href='https://www.quantumcloud.com/products/account/'>your account</a></p>
+							</td>
+						</tr>
+
+						<tr id="show_envato_plugin_downloader" style="display: none">
+							<th>
+								<label for="qcld_woowbot_enter_envato_key">Enter Purchase Code:</label>
+							</th>
+							<td colspan="4">
+								<input type="<?php echo (get_woowbot_envato_key()!=''?'password':'text'); ?>" id="qcld_woowbot_enter_envato_key" name="qcld_woowbot_enter_envato_key" class="regular-text" value="<?php echo get_woowbot_envato_key(); ?>">
+								<p>You can install the <a target="_blank" href="https://envato.com/market-plugin/">Envato Plugin</a> to stay up to date.</p>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>
+								<label for="qcld_woowbot_enter_license_or_purchase_key">Enter License Key or Purchase Code:</label>
+							</th>
+							<td>
+								<input type="<?php echo (get_woowbot_license_purchase_code()!=''?'password':'text'); ?>" id="qcld_woowbot_enter_license_or_purchase_key" name="qcld_woowbot_enter_license_or_purchase_key" class="regular-text" value="<?php echo get_woowbot_license_purchase_code(); ?>" required>
+							</td>
+						</tr>
+
+					</table>
+					<!-- //start new-update-for-codecanyon -->
+					<input type="hidden" name="qcld_woowbot_buy_from_where" value="<?php echo get_woowbot_licensing_buy_from(); ?>" >
+					<!-- //end new-update-for-codecanyon -->
+					<?php submit_button(); ?>
+				</form>
+				<script type="text/javascript">
+					jQuery(document).ready(function(){
+
+						//start new-update-for-codecanyon
+						jQuery('#qcld_woowbot_enter_license_or_purchase_key').on('focusout', function(){
+							qc_woowbot_set_plugin_license_fields();
+						});
+
+						jQuery('#qcld_woowbot_enter_license_or_purchase_key').on('keypress',function (e) {
+							  qc_woowbot_set_plugin_license_fields();
+						});
+
+						jQuery('#qc-license-form input[type="submit"]').on('click', function(){
+							qc_woowbot_set_plugin_license_fields();
+							jQuery('#qc-license-form').removeAttr('onsubmit').submit();
+						});
+
+						function qc_woowbot_set_plugin_license_fields(){
+							var license_input = jQuery('#qcld_woowbot_enter_license_or_purchase_key').val();
+							if( /^(\w{8})-((\w{4})-){3}(\w{12})$/.test(license_input) ){
+								jQuery('input[name="qcld_woowbot_buy_from_where"]').val('codecanyon');
+								jQuery('input[name="qcld_woowbot_enter_envato_key"]').val(license_input);
+							}else{
+								jQuery('input[name="qcld_woowbot_buy_from_where"]').val('quantumcloud');
+								jQuery('input[name="qcld_woowbot_enter_license_key"]').val(license_input);
+							}
+						}
+						//end new-update-for-codecanyon
+
+					});
+				</script>
+			</div>
+			<div class="content">
+			
+			<h2>Show Bot on a Page</h2>
+			<p>Paste the shortcode [woowbot-page] on any page to display Bot on that page.</p>
+			
+			<h2>Language Settings</h2>
+            <p><strong style="font-weight:bold;">1.</strong> You can use this variable for user name: %%username%%</p>
+            <p><strong style="font-weight:bold;">2.</strong> Insert full link to an image to show in the chatbot responses like https://www.quantumcloud.com/wp/sad.jpg</p>
+            <p><strong style="font-weight:bold;">3.</strong> Insert full link to an youtube video to show in the chatbot responses like https://www.youtube.com/watch?v=gIGqgLEK1BI</p>
+            <p><strong style="font-weight:bold;">4.</strong> After making changes in the language center or settings, please type reset and hit enter in the ChatBot to start testing from the beginning or open a new Incognito window (Ctrl+Shit+N in chrome).</p>
+			<p><strong style="font-weight:bold;">5.</strong> You could use &lt;br&gt; tag in Language Center & Dialogflow Responses for line break.</p>
+			</div>
+
+	</div>
+
+    <?php
+    $content = ob_get_clean();
+    echo $content;
+}
+/* livechat addon check */
+function qcld_woowbot_is_active_livechat(){
+	include_once(ABSPATH.'wp-admin/includes/plugin.php');
+	if ( is_plugin_active( 'live-chat-addon/wpbot-chat-addon.php' ) ){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+
+
+function woobot_get_users(){
+		
+    $data = get_option('wbca_options');
+    
+    if(@$data['admin_able_to_chat']=='1'){
+        $roles = array('operator', 'administrator');
+    }else{
+        $roles = array('operator');
+    }
+    
+    
+    $users = array();
+    foreach($roles as $role){
+        $current_user_role = get_users( array('role'=> $role));
+        $users = array_merge($current_user_role, $users);
+    }
+    return $users;
+}
+
+/* is operator online */
+
+function qcld_woowbot_is_operator_online(){
+		global $wpdb;
+		$operator = array();
+		
+		$users = woobot_get_users();
+		$blogtime = strtotime(current_time( 'mysql' ));
+		foreach ( $users as $user ) {
+			$meta = strtotime(get_user_meta($user->ID, 'wbca_login_time', true));
+			$interval  = abs($blogtime - $meta);
+			$minutes   = round($interval / 60);
+			if($minutes <= 5){
+				array_push($operator, $user->ID);
+			}
+			
+		}
+		if(!empty($operator)){
+			return 1;
+		}else {
+			return 0;
+		}
+}
+/* WoowBot Extended Search Addon check */
+function qcld_woowbot_is_active_extended_search(){
+	include_once(ABSPATH.'wp-admin/includes/plugin.php');
+	if ( is_plugin_active( 'extended-search-addon/wpbot-posttype-search-addon.php' ) ){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+
+function qcld_woowbot_modified_keyword($keyword){
+    $keyword = rtrim($keyword, '!');
+    $pattern = '/[?\/]/';
+    $strings = preg_split( $pattern, $keyword );
+    $strings = array_filter(array_map('trim', $strings));
+    $keyword = rtrim($strings[0], '!');
+    return htmlspecialchars_decode($keyword);
 }
